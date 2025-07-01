@@ -53,11 +53,11 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
 
 # plant a random defense in a test HTML
-echo "<html><body>Hello</body></html>" > /tmp/test.html
+echo "<html><body>Hello</body></html>" > ./test.html
 cheat --action plant --details '{
   "assettype": "web_file",
-  "file_path": "/tmp/test.html",
-  "technique": "random",
+  "file_path": "./test.html",
+  "technique": "random"
 }'
 ````
 
