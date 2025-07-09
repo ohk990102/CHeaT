@@ -15,7 +15,46 @@ With this mapping the dataset remains **100 % compatible with PurpleLlama**: you
 
 ---
 
-### Example — Evaluate the entire dataset with GPT-4o & GPT-4o-mini
+## 🔧 Setting Up PurpleLlama for Evaluation
+
+To evaluate our dataset using [PurpleLlama](https://github.com/meta-llama/PurpleLlama), follow these steps:
+
+### 1. Clone the PurpleLlama Repository
+
+```bash
+git clone https://github.com/meta-llama/PurpleLlama.git
+```
+
+### 2. Navigate to the Project and Set Up a Virtual Environment
+
+```bash
+cd PurpleLlama
+python3 -m venv .venv && source .venv/bin/activate
+```
+
+### 3. Install Python Dependencies
+
+```bash
+pip3 install -r CybersecurityBenchmarks/requirements.txt
+```
+
+### 4. Set the Dataset Path
+
+You must export the path where datasets will be stored. For example:
+
+```bash
+export DATASETS=$PWD/CybersecurityBenchmarks/datasets
+```
+
+You can create a subdirectory within this path (e.g., `CHeaT`) and place our dataset files there:
+
+```
+$DATASETS/CHeaT/dataset_main.json
+```
+
+### 5. Run the Benchmark
+
+Use the following command to run the benchmark with the dataset:
 
 ```bash
 python3 -m CybersecurityBenchmarks.benchmark.run \
@@ -30,7 +69,15 @@ python3 -m CybersecurityBenchmarks.benchmark.run \
   --run-llm-in-parallel
 ```
 
-The command runs both candidate models in parallel while GPT-4o acts as the judge LLM, producing response and statistics files in one pass.
+The command runs both GPT-4o and GPT-4o-mini models in parallel while GPT-4o acts as the judge LLM, producing response and statistics files in one pass.
+
+> 🔁 You can limit the number of test cases by appending the `--num-test-cases` flag:
+
+```bash
+--num-test-cases 100
+```
+
+This will run evaluation on 100 samples instead of the entire dataset.
 
 > **PurpleLlama repository:** [https://github.com/meta-llama/PurpleLlama](https://github.com/meta-llama/PurpleLlama) \
 > **PurpleLlama docs:** [https://meta-llama.github.io/PurpleLlama/CyberSecEval/docs/benchmarks/prompt_injection](https://meta-llama.github.io/PurpleLlama/CyberSecEval/docs/benchmarks/prompt_injection)
