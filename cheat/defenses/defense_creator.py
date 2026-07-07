@@ -15,7 +15,21 @@ class DefenseCreator:
                 "prefix": f"{raw_prefix}\n",
                 "suffix": f"\n{raw_suffix}"
             }
-        elif asset_type == "web_file":
+        elif asset_type in {
+            "web_file",
+            "html_response_comment",
+            "template_file",
+            "static_html_file",
+            "php_mixed_html",
+            "php_echo_html",
+            "python_inline_html",
+            "node_inline_html",
+            "sinatra_erb_template",
+            "ruby_inline_erb",
+            "flask_response_hook",
+            "express_response_hook",
+            "sinatra_response_hook",
+        }:
             return {
                 "prefix": f"<!-- {raw_prefix} -->\n",
                 "suffix": f"\n<!-- {raw_suffix} -->"
